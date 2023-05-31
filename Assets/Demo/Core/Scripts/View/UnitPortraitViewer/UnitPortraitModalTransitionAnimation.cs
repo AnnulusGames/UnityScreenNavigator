@@ -7,6 +7,7 @@ namespace Demo.Core.Scripts.View.UnitPortraitViewer
     public class UnitPortraitModalTransitionAnimation : TransitionAnimationBehaviour
     {
         [SerializeField] private float duration = 0.3f;
+        [SerializeField] private TransitionUpdateMode updateMode = TransitionUpdateMode.Time;
         public EaseType easeType = EaseType.QuarticEaseOut;
         public bool isEnter;
 
@@ -18,6 +19,7 @@ namespace Demo.Core.Scripts.View.UnitPortraitViewer
         private Vector2 _endSize;
 
         public override float Duration => duration;
+        public override bool IgnoreTimeScale => updateMode == TransitionUpdateMode.UnscaledTime;
 
         public override void Setup()
         {

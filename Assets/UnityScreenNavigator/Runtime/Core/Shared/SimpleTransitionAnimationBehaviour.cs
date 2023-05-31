@@ -6,6 +6,7 @@ namespace UnityScreenNavigator.Runtime.Core.Shared
     {
         [SerializeField] private float _delay;
         [SerializeField] private float _duration = 0.3f;
+        [SerializeField] private TransitionUpdateMode _updateMode = TransitionUpdateMode.Time;
         [SerializeField] private EaseType _easeType = EaseType.QuarticEaseOut;
         [SerializeField] private SheetAlignment _beforeAlignment = SheetAlignment.Center;
         [SerializeField] private Vector3 _beforeScale = Vector3.one;
@@ -19,6 +20,7 @@ namespace UnityScreenNavigator.Runtime.Core.Shared
         private CanvasGroup _canvasGroup;
 
         public override float Duration => _delay + _duration;
+        public override bool IgnoreTimeScale => _updateMode == TransitionUpdateMode.UnscaledTime;
 
         public override void Setup()
         {

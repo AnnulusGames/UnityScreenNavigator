@@ -10,6 +10,7 @@ namespace UnityScreenNavigator.Runtime.Core.Shared
         public RectTransform RectTransform { get; private set; }
         public RectTransform PartnerRectTransform { get; private set; }
         public abstract float Duration { get; }
+        public abstract bool IgnoreTimeScale { get; }
 
         void ITransitionAnimation.SetPartner(RectTransform partnerRectTransform)
         {

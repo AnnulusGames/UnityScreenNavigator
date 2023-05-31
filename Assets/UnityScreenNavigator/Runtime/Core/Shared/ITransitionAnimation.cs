@@ -10,6 +10,8 @@ namespace UnityScreenNavigator.Runtime.Core.Shared
         void SetPartner(RectTransform partnerRectTransform);
 
         void Setup(RectTransform rectTransform);
+
+        bool IgnoreTimeScale { get; }
     }
 
     internal static class TransitionAnimationExtensions
@@ -17,7 +19,7 @@ namespace UnityScreenNavigator.Runtime.Core.Shared
         public static IEnumerator CreatePlayRoutine(this ITransitionAnimation self, IProgress<float> progress = null)
         {
             var player = new AnimationPlayer(self);
-            UpdateDispatcher.Instance.Register(player);
+            UpdateDispatcher.Instance.Register(player, _ => self.IgnoreTimeScale ? Time.unscaledDeltaTime : Time.deltaTime);
             progress?.Report(0.0f);
             player.Play();
             while (!player.IsFinished)

@@ -6,6 +6,7 @@ namespace Demo.Core.Scripts.View.UnitShop
     public sealed class UnitShopItemSetSheetTransitionAnimationBehaviour : TransitionAnimationBehaviour
     {
         [SerializeField] private float duration = 0.2f;
+        [SerializeField] private TransitionUpdateMode updateMode = TransitionUpdateMode.Time;
         public bool isEnterAnimation;
         public EaseType easeType = EaseType.QuarticEaseOut;
 
@@ -16,6 +17,7 @@ namespace Demo.Core.Scripts.View.UnitShop
         private int _tabIndex;
 
         public override float Duration => duration;
+        public override bool IgnoreTimeScale => updateMode == TransitionUpdateMode.UnscaledTime;
 
         public override void SetTime(float time)
         {

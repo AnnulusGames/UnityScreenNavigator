@@ -9,8 +9,10 @@ namespace UnityScreenNavigator.Runtime.Core.Shared
     {
         [SerializeField] private PlayableDirector _director;
         [SerializeField] private TimelineAsset _timelineAsset;
+        [SerializeField] private TransitionUpdateMode _updateMode = TransitionUpdateMode.Time;
 
         public override float Duration => (float)_timelineAsset.duration;
+        public override bool IgnoreTimeScale => _updateMode == TransitionUpdateMode.UnscaledTime;
 
         public override void Setup()
         {
